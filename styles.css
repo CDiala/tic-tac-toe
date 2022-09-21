@@ -1,0 +1,10 @@
+.game-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 120px;
+}
+
+.play-box {
+  width: 40px;
+  height: 40px;
+}
