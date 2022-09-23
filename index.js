@@ -13,7 +13,14 @@ gameTiles.forEach((tile) => {
     markTile(tile);
     countPlay();
     setPlayIndex(tile.dataset.id);
-    getWinner(playerStart === "X" ? xCount : oCount);
+    if (!winnerLabel.innerHTML.includes(" ")) {
+      winnerLabel.innerHTML += getWinner(
+        playerStart === "X" ? xCount : oCount,
+        playerStart,
+        playerStart === "X" ? xIndices : oIndices
+      );
+    } else {
+    }
     setPlayer();
   });
 });
@@ -41,19 +48,31 @@ function markTile(tile) {
 }
 
 function setPlayIndex(num) {
+  strNum = num.toString();
   if (playerStart === "X") {
-    xIndices += num.toString();
-    console.log(xIndices);
+    if (!xIndices.includes(strNum)) {
+      xIndices += strNum;
+    }
   } else {
-    oIndices += num;
-    console.log(oIndices);
+    if (!oIndices.includes(strNum)) {
+      oIndices += strNum;
+    }
   }
 }
 
-function getWinner(playCount) {
-  console.log(playerStart, playCount);
+function getWinner(playCount, player, strIndices) {
+  let sortedIndices = String(strIndices).split("");
+  sortedIndices = sortedIndices.sort((a, b) => a - b).join("");
   if (playCount < 3) {
   } else {
-    console.log(playCount + " is up to 3");
+    for (let item of winningArray) {
+      console.log("item:", item, ";", "sortedIndices:", sortedIndices);
+      // item: 357 ; sortedIndices: 35678
+      // code doesn't catch the above. fix it and that's all.
+      if (item.includes(sortedIndices) || sortedIndices.includes(item)) {
+        return "Player '" + player + "' wins";
+      }
+    }
   }
+  return "";
 }
