@@ -64,15 +64,25 @@ function getWinner(playCount, player, strIndices) {
   let sortedIndices = String(strIndices).split("");
   sortedIndices = sortedIndices.sort((a, b) => a - b).join("");
   if (playCount < 3) {
-  } else {
+  } else if (sortedIndices.length === 3) {
     for (let item of winningArray) {
-      console.log("item:", item, ";", "sortedIndices:", sortedIndices);
-      // item: 357 ; sortedIndices: 35678
-      // code doesn't catch the above. fix it and that's all.
       if (item.includes(sortedIndices) || sortedIndices.includes(item)) {
         return "Player '" + player + "' wins";
       }
     }
+  } else {
+    // item: 357 ; sortedIndices: 35678
+    // code doesn't catch the above. fix it and that's all.
+    for (let i = 0; i < winningArray.length; i++) {
+      let winItem = winningArray[i];
+      for (let j = 0; j < winItem.length; j++) {
+        console.log("item:", winItem[j], ";", "sortedIndices:", sortedIndices);
+        if (!sortedIndices.includes(winItem[j])) {
+          break;
+        }
+      }
+    }
+    return "Player '" + player + "' wins";
   }
   return "";
 }
