@@ -76,13 +76,16 @@ function getWinner(playCount, player, strIndices) {
     for (let i = 0; i < winningArray.length; i++) {
       let winItem = winningArray[i];
       for (let j = 0; j < winItem.length; j++) {
-        console.log("item:", winItem[j], ";", "sortedIndices:", sortedIndices);
-        if (!sortedIndices.includes(winItem[j])) {
-          break;
+        let count = 0;
+        // console.log("item:", winItem[j], ";", "sortedIndices:", sortedIndices);
+        if (sortedIndices.includes(winItem[j])) {
+          count++;
+        }
+        if (count === winItem.length) {
+          return "Player '" + player + "' wins";
         }
       }
     }
-    return "Player '" + player + "' wins";
   }
   return "";
 }
