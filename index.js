@@ -3,6 +3,7 @@ let player = document.querySelector(".player");
 let winnerLabel = document.querySelector(".winner");
 let gameTiles = document.querySelectorAll(".play-box");
 let winningArray = ["123", "456", "789", "147", "258", "369", "159", "357"];
+let tileCount = winningArray[0].length;
 let xCount = 0;
 let oCount = 0;
 let xIndices = "";
@@ -42,6 +43,7 @@ function countPlay() {
 }
 
 function markTile(tile) {
+  // Set tile text
   if (tile.innerHTML === "") {
     tile.innerHTML = playerStart;
   }
@@ -49,6 +51,7 @@ function markTile(tile) {
 
 function setPlayIndex(num) {
   strNum = num.toString();
+  // Save player's tiles
   if (playerStart === "X") {
     if (!xIndices.includes(strNum)) {
       xIndices += strNum;
@@ -63,21 +66,19 @@ function setPlayIndex(num) {
 function getWinner(playCount, player, strIndices) {
   let sortedIndices = String(strIndices).split("");
   sortedIndices = sortedIndices.sort((a, b) => a - b).join("");
-  if (playCount < 3) {
-  } else if (sortedIndices.length === 3) {
+  if (playCount < tileCount) {
+  } else if (sortedIndices.length === tileCount) {
     for (let item of winningArray) {
       if (item.includes(sortedIndices) || sortedIndices.includes(item)) {
         return "Player '" + player + "' wins";
       }
     }
   } else {
-    // item: 357 ; sortedIndices: 35678
-    // code doesn't catch the above. fix it and that's all.
+    // Check if player wins the round
     for (let i = 0; i < winningArray.length; i++) {
       let winItem = winningArray[i];
       let count = 0;
       for (let j = 0; j < winItem.length; j++) {
-        // console.log("item:", winItem[j], ";", "sortedIndices:", sortedIndices);
         if (sortedIndices.includes(winItem[j])) {
           count++;
         }
