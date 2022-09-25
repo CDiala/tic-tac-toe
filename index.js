@@ -75,8 +75,8 @@ function getWinner(playCount, player, strIndices) {
     // code doesn't catch the above. fix it and that's all.
     for (let i = 0; i < winningArray.length; i++) {
       let winItem = winningArray[i];
+      let count = 0;
       for (let j = 0; j < winItem.length; j++) {
-        let count = 0;
         // console.log("item:", winItem[j], ";", "sortedIndices:", sortedIndices);
         if (sortedIndices.includes(winItem[j])) {
           count++;
