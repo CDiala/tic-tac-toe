@@ -90,3 +90,16 @@ function getWinner(playCount, player, strIndices) {
   }
   return "";
 }
+
+function getWinningTiles(count) {
+  // assume count = 4
+  // declare an array variable
+  // loop thru count and populate accordingly:
+  /*
+    1. horizontal tiles: difference = 1 i.e. ['1.2.3.4', '5.6.7.8', '9.10.11.12', '13.14.15.16']
+    2. vertical tiles: difference = 4 i.e. ['1.5.9.13', '...']
+    3. diag left tiles: difference = 5 i.e. ['1.6.11.16']
+    3. diag right tiles: difference = 5 i.e. ['4.7.10.13']
+
+  */
+}
