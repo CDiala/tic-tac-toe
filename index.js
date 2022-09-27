@@ -1,8 +1,10 @@
 let playerStart = "X";
 let player = document.querySelector(".player");
 let winnerLabel = document.querySelector(".winner");
+let tiles = document.querySelector(".tile-count");
 let gameTiles = document.querySelectorAll(".play-box");
-let winningArray = ["123", "456", "789", "147", "258", "369", "159", "357"];
+// let winningArray = ["123", "456", "789", "147", "258", "369", "159", "357"];
+let winningArray = getWinningTiles(4); // dynamically construct the winning array
 let tileCount = winningArray[0].length;
 let xCount = 0;
 let oCount = 0;
@@ -102,4 +104,62 @@ function getWinningTiles(count) {
     3. diag right tiles: difference = 5 i.e. ['4.7.10.13']
 
   */
+  let finalArray = [];
+  finalArray.push(
+    ...getHorizontal(count),
+    ...getVertical(count),
+    getLeftDiag(count),
+    getRightDiag(count)
+  );
+  return finalArray;
 }
+
+function getHorizontal(n) {
+  let arrHorizontal = [];
+  let loopEnd = Math.pow(n, 2);
+
+  for (let i = 1; i <= loopEnd; i += n) {
+    let strWin = "";
+    for (let j = i; j < i + n; j++) {
+      strWin += j + " ";
+    }
+    strWin = strWin.trim();
+    arrHorizontal.push(strWin);
+  }
+  return arrHorizontal;
+}
+
+function getVertical(n) {
+  let arrVertical = [];
+  let loopEnd = n * (n - 1);
+
+  for (let i = 1; i <= n; i++) {
+    let tempString = "";
+    for (let j = i; j <= i + loopEnd; j += n) {
+      tempString += j + " ";
+    }
+    tempString = tempString.trim();
+    arrVertical.push(tempString);
+  }
+  return arrVertical;
+}
+
+function getLeftDiag(count) {
+  let strLeftDiag = "";
+  let loopEnd = Math.pow(count, 2);
+  for (let i = 1; i <= loopEnd; i += count + 1) {
+    strLeftDiag += `${i} `;
+  }
+  return strLeftDiag.trim();
+}
+
+function getRightDiag(count) {
+  let strRightDiag = "";
+  let loopEnd = Math.pow(count, 2) - count + 1;
+  for (let i = count; i <= loopEnd; i += count - 1) {
+    strRightDiag += `${i} `;
+  }
+  return strRightDiag.trim();
+}
+
+console.log(getWinningTiles(4));
