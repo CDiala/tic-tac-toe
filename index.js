@@ -34,6 +34,7 @@ function setPlayer() {
   } else {
     playerStart = "X";
   }
+  setDisplayText(player, `Player: ${playerStart}`);
 }
 
 function countPlay() {
@@ -97,8 +98,8 @@ function getWinner(playCount, player, strIndices) {
 let resetButton = document.querySelector(".reset");
 resetButton.addEventListener("click", () => {
   clearTiles();
-  clearText(player, "Player:");
-  clearText(winnerLabel, "Winner:");
+  setDisplayText(player, "Player:");
+  setDisplayText(winnerLabel, "Winner:");
 });
 
 // function to clear tiles
