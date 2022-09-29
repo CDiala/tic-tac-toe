@@ -97,14 +97,20 @@ function getWinner(playCount, player, strIndices) {
 let resetButton = document.querySelector(".reset");
 resetButton.addEventListener("click", () => {
   clearTiles();
+  clearText(player, "Player:");
+  clearText(winnerLabel, "Winner:");
 });
 
 // function to clear tiles
 function clearTiles() {
-  console.log("clear me");
   gameTiles.forEach((tile) => {
     tile.innerHTML = "";
   });
+}
+
+// function to reset texts
+function clearText(control, value) {
+  control["innerHTML"] = value;
 }
 
 // dynamic tic-tac-toe
