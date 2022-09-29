@@ -109,7 +109,7 @@ function clearTiles() {
 }
 
 // function to reset texts
-function clearText(control, value) {
+function setDisplayText(control, value) {
   control["innerHTML"] = value;
 }
 
