@@ -3,8 +3,8 @@ let player = document.querySelector(".player");
 let winnerLabel = document.querySelector(".winner");
 let tiles = document.querySelector(".tile-count");
 let gameTiles = document.querySelectorAll(".play-box");
-// let winningArray = ["123", "456", "789", "147", "258", "369", "159", "357"];
-let winningArray = getWinningTiles(4); // dynamically construct the winning array
+let winningArray = ["123", "456", "789", "147", "258", "369", "159", "357"];
+// let winningArray = getWinningTiles(4); // dynamically construct the winning array
 let tileCount = winningArray[0].length;
 let xCount = 0;
 let oCount = 0;
@@ -93,17 +93,22 @@ function getWinner(playCount, player, strIndices) {
   return "";
 }
 
-function getWinningTiles(count) {
-  // assume count = 4
-  // declare an array variable
-  // loop thru count and populate accordingly:
-  /*
-    1. horizontal tiles: difference = 1 i.e. ['1.2.3.4', '5.6.7.8', '9.10.11.12', '13.14.15.16']
-    2. vertical tiles: difference = 4 i.e. ['1.5.9.13', '...']
-    3. diag left tiles: difference = 5 i.e. ['1.6.11.16']
-    3. diag right tiles: difference = 5 i.e. ['4.7.10.13']
+// reset game
+let resetButton = document.querySelector(".reset");
+resetButton.addEventListener("click", () => {
+  clearTiles();
+});
 
-  */
+// function to clear tiles
+function clearTiles() {
+  console.log("clear me");
+  gameTiles.forEach((tile) => {
+    tile.innerHTML = "";
+  });
+}
+
+// dynamic tic-tac-toe
+function getWinningTiles(count) {
   let finalArray = [];
   finalArray.push(
     ...getHorizontal(count),
