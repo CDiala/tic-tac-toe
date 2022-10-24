@@ -5,6 +5,8 @@
 }
 
 .play-box {
-  width: 80px;
+  font-size: 40px;
+  font-weight: 700;
   height: 80px;
+  width: 80px;
 }
