@@ -13,18 +13,22 @@ let oIndices = "";
 
 gameTiles.forEach((tile) => {
   tile.addEventListener("click", () => {
-    markTile(tile);
-    countPlay();
-    setPlayIndex(tile.dataset.id);
-    if (!winnerLabel.innerHTML.includes(" ")) {
+    // If a winner has emerged, do nothing,
+    // else, execute code below:
+    if (!winnerLabel.innerHTML.includes("wins")) {
+      markTile(tile);
+      countPlay();
+      setPlayIndex(tile.dataset.id);
+      // if (!winnerLabel.innerHTML.includes(" ")) { // for test
       winnerLabel.innerHTML += getWinner(
         playerStart === "X" ? xCount : oCount,
         playerStart,
         playerStart === "X" ? xIndices : oIndices
       );
-    } else {
+      // } else { // for test
+      // } // for test
+      setPlayer();
     }
-    setPlayer();
   });
 });
 
