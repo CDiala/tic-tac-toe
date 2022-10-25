@@ -1,4 +1,5 @@
 let playerStart = "X";
+let firstPlayer = playerStart;
 let player = document.querySelector(".player");
 let winnerLabel = document.querySelector(".winner");
 let tiles = document.querySelector(".tile-count");
@@ -102,7 +103,9 @@ function getWinner(playCount, player, strIndices) {
 let resetButton = document.querySelector(".reset");
 resetButton.addEventListener("click", () => {
   clearTiles();
-  setDisplayText(player, "Player:");
+  firstPlayer = playerStart;
+  setDisplayText(player, `Player: ${firstPlayer}`);
+  // setDisplayText(player, "Player:");
   setDisplayText(winnerLabel, "Winner:");
 });
 
@@ -111,6 +114,10 @@ function clearTiles() {
   gameTiles.forEach((tile) => {
     tile.innerHTML = "";
   });
+  xCount = 0;
+  oCount = 0;
+  xIndices = "";
+  oIndices = "";
 }
 
 // function to reset texts
