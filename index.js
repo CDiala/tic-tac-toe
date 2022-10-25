@@ -1,5 +1,5 @@
 let playerStart = "X";
-let firstPlayer = playerStart;
+let currentPlayer = playerStart;
 let player = document.querySelector(".player");
 let winnerLabel = document.querySelector(".winner");
 let tiles = document.querySelector(".tile-count");
@@ -22,9 +22,9 @@ gameTiles.forEach((tile) => {
       countPlay();
       setPlayIndex(tile.dataset.id);
       winnerLabel.innerHTML += getWinner(
-        playerStart === "X" ? xCount : oCount,
-        playerStart,
-        playerStart === "X" ? xIndices : oIndices
+        currentPlayer === "X" ? xCount : oCount,
+        currentPlayer,
+        currentPlayer === "X" ? xIndices : oIndices
       );
       setPlayer();
     }
@@ -32,16 +32,16 @@ gameTiles.forEach((tile) => {
 });
 
 function setPlayer() {
-  if (playerStart === "X") {
-    playerStart = "O";
+  if (currentPlayer === "X") {
+    currentPlayer = "O";
   } else {
-    playerStart = "X";
+    currentPlayer = "X";
   }
-  setDisplayText(player, `Player: ${playerStart}`);
+  setDisplayText(player, `Player: ${currentPlayer}`);
 }
 
 function countPlay() {
-  if (playerStart === "X") {
+  if (currentPlayer === "X") {
     xCount++;
   } else {
     oCount++;
@@ -51,14 +51,14 @@ function countPlay() {
 function markTile(tile) {
   // Set tile text
   if (tile.innerHTML === "") {
-    tile.innerHTML = playerStart;
+    tile.innerHTML = currentPlayer;
   }
 }
 
 function setPlayIndex(num) {
   strNum = num.toString();
   // Save player's tiles
-  if (playerStart === "X") {
+  if (currentPlayer === "X") {
     if (!xIndices.includes(strNum)) {
       xIndices += strNum;
     }
@@ -101,8 +101,8 @@ function getWinner(playCount, player, strIndices) {
 let resetButton = document.querySelector(".reset");
 resetButton.addEventListener("click", () => {
   clearTiles();
-  firstPlayer = playerStart;
-  setDisplayText(player, `Player: ${firstPlayer}`);
+  currentPlayer = playerStart;
+  setDisplayText(player, `Player: ${currentPlayer}`);
   setDisplayText(winnerLabel, "Winner:");
 });
 
