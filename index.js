@@ -21,14 +21,11 @@ gameTiles.forEach((tile) => {
       markTile(tile);
       countPlay();
       setPlayIndex(tile.dataset.id);
-      // if (!winnerLabel.innerHTML.includes(" ")) { // for test
       winnerLabel.innerHTML += getWinner(
         playerStart === "X" ? xCount : oCount,
         playerStart,
         playerStart === "X" ? xIndices : oIndices
       );
-      // } else { // for test
-      // } // for test
       setPlayer();
     }
   });
@@ -106,7 +103,6 @@ resetButton.addEventListener("click", () => {
   clearTiles();
   firstPlayer = playerStart;
   setDisplayText(player, `Player: ${firstPlayer}`);
-  // setDisplayText(player, "Player:");
   setDisplayText(winnerLabel, "Winner:");
 });
 
