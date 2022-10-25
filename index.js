@@ -14,9 +14,10 @@ let oIndices = "";
 
 gameTiles.forEach((tile) => {
   tile.addEventListener("click", () => {
-    // If a winner has emerged, do nothing,
-    // else, execute code below:
-    if (!winnerLabel.innerHTML.includes("wins")) {
+    // do nothing if tile is not blank
+    // else if a winner hasn't emerged, execute code
+    if (tile.innerHTML !== "") {
+    } else if (!winnerLabel.innerHTML.includes("wins")) {
       markTile(tile);
       countPlay();
       setPlayIndex(tile.dataset.id);
