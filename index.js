@@ -5,7 +5,7 @@ let winnerLabel = document.querySelector(".winner");
 let tiles = document.querySelector(".tile-count");
 let gameTiles = document.querySelectorAll(".play-box");
 let winningArray = ["123", "456", "789", "147", "258", "369", "159", "357"];
-// let winningArray = getWinningTiles(4); // dynamically construct the winning array
+let dynamicWinArray = getWinningTiles(4); // dynamically construct the winning array
 let tileCount = winningArray[0].length;
 let xCount = 0;
 let oCount = 0;
@@ -122,6 +122,9 @@ function setDisplayText(control, value) {
   control["innerHTML"] = value;
 }
 
+// ---------------------------------------------- //
+// -------------DYNAMIC GAME STARTS-------------- //
+// ---------------------------------------------- //
 // dynamic tic-tac-toe
 function getWinningTiles(count) {
   let finalArray = [];
@@ -182,4 +185,4 @@ function getRightDiag(count) {
   return strRightDiag.trim();
 }
 
-console.log(getWinningTiles(4));
+console.table(getWinningTiles(4));
