@@ -185,4 +185,18 @@ function getRightDiag(count) {
   return strRightDiag.trim();
 }
 
-console.table(getWinningTiles(4));
+console.table(getWinningTiles(tiles.textContent));
+
+// Get tile count from input field
+let btnStart = document.querySelector("#btnStart");
+let nTiles;
+btnStart.addEventListener("click", (e) => {
+  // save tile number
+  let inputText = document.querySelector(".tile-count").value;
+  nTiles = +inputText >= 3 && +inputText <= 9 ? inputText : null;
+});
+
+// get the number of tiles
+// build the win arrays
+// build the game tiles
+// proceed to play game
