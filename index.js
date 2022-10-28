@@ -172,14 +172,26 @@ function getVertical(n) {
 
 // console.log(getVertical(["1 2 3", "4 5 6", "7 8 9"]));
 
-function getLeftDiag(count) {
+// function getLeftDiag(count) {
+function getLeftDiag(arr) {
+  /*
+    1. loop through the items in the array
+    2. get the sub-item at the current index
+    3. push item to array
+  */
   let strLeftDiag = "";
-  let loopEnd = Math.pow(count, 2);
-  for (let i = 1; i <= loopEnd; i += count + 1) {
-    strLeftDiag += `${i} `;
+  for (let index in arr) {
+    // Remove the spaces in the array item
+    let arrayItem = arr[index].split(" ");
+
+    // Append the nth item to the variable string
+    strLeftDiag += `${arrayItem[index]} `;
   }
+  console.log(strLeftDiag.trim());
   return strLeftDiag.trim();
 }
+
+console.log(getLeftDiag(["1 2 3 a", "4 5 6 b", "7 8 9 c", "w e r t"]));
 
 function getRightDiag(count) {
   let strRightDiag = "";
@@ -189,8 +201,6 @@ function getRightDiag(count) {
   }
   return strRightDiag.trim();
 }
-
-// console.table(getWinningTiles(nTiles));
 
 // Get tile count from input field
 let btnStart = document.querySelector("#btnStart");
