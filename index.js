@@ -130,7 +130,7 @@ function getWinningTiles(count) {
   let finalArray = [];
   finalArray.push(
     ...getHorizontal(count),
-    ...getVertical(count),
+    ...getVertical([...getHorizontal(count)]),
     getLeftDiag(count),
     getRightDiag(count)
   );
@@ -166,11 +166,11 @@ function getVertical(n) {
         : newArr[innerIndex];
     }
   }
-  console.log(arrVertical);
+  console.log("arrVertical:", arrVertical);
   return arrVertical;
 }
 
-console.log(getVertical(["1 2 3", "4 5 6", "7 8 9"]));
+// console.log(getVertical(["1 2 3", "4 5 6", "7 8 9"]));
 
 function getLeftDiag(count) {
   let strLeftDiag = "";
