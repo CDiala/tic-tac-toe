@@ -150,7 +150,6 @@ function getHorizontal(n) {
       strWin = "";
     }
   }
-  console.log("arrHorizontal:", arrHorizontal);
   return arrHorizontal;
 }
 
@@ -166,19 +165,10 @@ function getVertical(n) {
         : newArr[innerIndex];
     }
   }
-  console.log("arrVertical:", arrVertical);
   return arrVertical;
 }
 
-// console.log(getVertical(["1 2 3", "4 5 6", "7 8 9"]));
-
-// function getLeftDiag(count) {
 function getLeftDiag(arr) {
-  /*
-    1. loop through the items in the array
-    2. get the sub-item at the current index
-    3. push item to array
-  */
   let strLeftDiag = "";
   for (let index in arr) {
     // Remove the spaces in the array item
@@ -187,27 +177,20 @@ function getLeftDiag(arr) {
     // Append the nth item to the variable string
     strLeftDiag += `${arrayItem[index]} `;
   }
-  console.log(strLeftDiag.trim());
   return strLeftDiag.trim();
 }
 
 // function getRightDiag(count) {
 function getRightDiag(arr) {
-  /*
-    1. loop through the items in the array
-    2. get the sub-item at the (length - current) index
-    3. push item to array
-  */
   let strRightDiag = "";
   let itemLength = arr.length - 1;
   for (let index in arr) {
     let arrayItem = arr[index].split(" ");
+    // Get the nth item in reverse order (RTL) and append to string variable
     strRightDiag += `${arrayItem[itemLength - index]} `;
   }
   return strRightDiag.trim();
 }
-
-console.log(getRightDiag(["1 2 3", "4 5 6", "7 8 9"]));
 
 // Get tile count from input field
 let btnStart = document.querySelector("#btnStart");
@@ -223,7 +206,6 @@ btnStart.addEventListener("click", (e) => {
   } else {
     dynamicWinArray = [...getWinningTiles(nTiles)];
     tileCount = dynamicWinArray[0].split(" ").length;
-    console.log(dynamicWinArray, tileCount);
   }
 
   // Call function to create tiles
@@ -253,7 +235,6 @@ function createTiles(tileCount) {
     btn.style.width = `${tileWidth}px`;
     btn.classList.add("play-box");
     btn.dataset.id = i + 1;
-    // console.log("id:", btn.dataset.id);
 
     // add new tile to container
     tilesContainer.appendChild(btn);
