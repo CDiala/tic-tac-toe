@@ -238,6 +238,32 @@ function createTiles(tileCount) {
     // add new tile to container
     tilesContainer.appendChild(btn);
   }
+  addClickEvent();
+}
+
+// --------------------------------------------------- //
+// -------------Add Click Event to tiles-------------- //
+// --------------------------------------------------- //
+
+function addClickEvent() {
+  tilesContainer.childNodes.forEach((tile) => {
+    tile.addEventListener("click", () => {
+      // do nothing if tile is not blank
+      // else if a winner hasn't emerged, execute code
+      if (tile.innerHTML !== "") {
+      } else if (!winnerLabel.innerHTML.includes("wins")) {
+        markTile(tile);
+        countPlay();
+        setPlayIndex(tile.dataset.id);
+        winnerLabel.innerHTML += getWinner(
+          currentPlayer === "X" ? xCount : oCount,
+          currentPlayer,
+          currentPlayer === "X" ? xIndices : oIndices
+        );
+        setPlayer();
+      }
+    });
+  });
 }
 
 // get the number of tiles
