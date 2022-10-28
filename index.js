@@ -5,7 +5,7 @@ let winnerLabel = document.querySelector(".winner");
 let tiles = document.querySelector(".tile-count");
 let gameTiles = document.querySelectorAll(".play-box");
 let winningArray = ["123", "456", "789", "147", "258", "369", "159", "357"];
-let dynamicWinArray = getWinningTiles(4); // dynamically construct the winning array
+let dynamicWinArray; // dynamically construct the winning array
 let tileCount = winningArray[0].length;
 let xCount = 0;
 let oCount = 0;
@@ -194,7 +194,18 @@ btnStart.addEventListener("click", (e) => {
   // save tile number
   let inputText = document.querySelector(".tile-count").value;
   nTiles = +inputText >= 3 && +inputText <= 9 ? inputText : null;
-  console.log(createTiles(nTiles));
+
+  // Get winning array list if nTiles is valid
+  if (nTiles === null) {
+    console.log("please enter a number between 3 and 9");
+  } else {
+    dynamicWinArray = [...getWinningTiles(nTiles)];
+    tileCount = dynamicWinArray[0].split(" ").length;
+    console.log(dynamicWinArray, tileCount);
+  }
+
+  // Call function to create tiles
+  createTiles(nTiles);
 });
 
 // ---------------------------------------------- //
