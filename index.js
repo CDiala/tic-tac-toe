@@ -141,14 +141,16 @@ function getHorizontal(n) {
   let arrHorizontal = [];
   let loopEnd = Math.pow(n, 2);
 
-  for (let i = 1; i <= loopEnd; i += n) {
-    let strWin = "";
-    for (let j = i; j < i + n; j++) {
-      strWin += j + " ";
+  let strWin = "";
+  for (let i = 1; i <= loopEnd; i++) {
+    strWin += i + " ";
+    if (i % n !== 0) {
+    } else {
+      arrHorizontal.push(strWin.trim());
+      strWin = "";
     }
-    strWin = strWin.trim();
-    arrHorizontal.push(strWin);
   }
+  console.log("arrHorizontal:", arrHorizontal);
   return arrHorizontal;
 }
 
