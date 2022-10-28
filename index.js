@@ -191,16 +191,23 @@ function getLeftDiag(arr) {
   return strLeftDiag.trim();
 }
 
-console.log(getLeftDiag(["1 2 3 a", "4 5 6 b", "7 8 9 c", "w e r t"]));
-
-function getRightDiag(count) {
+// function getRightDiag(count) {
+function getRightDiag(arr) {
+  /*
+    1. loop through the items in the array
+    2. get the sub-item at the (length - current) index
+    3. push item to array
+  */
   let strRightDiag = "";
-  let loopEnd = Math.pow(count, 2) - count + 1;
-  for (let i = count; i <= loopEnd; i += count - 1) {
-    strRightDiag += `${i} `;
+  let itemLength = arr.length - 1;
+  for (let index in arr) {
+    let arrayItem = arr[index].split(" ");
+    strRightDiag += `${arrayItem[itemLength - index]} `;
   }
   return strRightDiag.trim();
 }
+
+console.log(getRightDiag(["1 2 3", "4 5 6", "7 8 9"]));
 
 // Get tile count from input field
 let btnStart = document.querySelector("#btnStart");
