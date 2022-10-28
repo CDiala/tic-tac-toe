@@ -131,8 +131,8 @@ function getWinningTiles(count) {
   finalArray.push(
     ...getHorizontal(count),
     ...getVertical([...getHorizontal(count)]),
-    getLeftDiag(count),
-    getRightDiag(count)
+    getLeftDiag([...getHorizontal(count)]),
+    getRightDiag([...getHorizontal(count)])
   );
   return finalArray;
 }
