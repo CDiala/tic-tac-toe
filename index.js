@@ -156,18 +156,21 @@ function getHorizontal(n) {
 
 function getVertical(n) {
   let arrVertical = [];
-  let loopEnd = n * (n - 1);
-
-  for (let i = 1; i <= n; i++) {
-    let tempString = "";
-    for (let j = i; j <= i + loopEnd; j += n) {
-      tempString += j + " ";
+  for (let index in n) {
+    let newArr = n[index].split(" ");
+    for (let innerIndex in newArr) {
+      // If array item doesn't exist, enter new record
+      // else, append new record
+      arrVertical[innerIndex] = arrVertical[innerIndex]
+        ? `${arrVertical[innerIndex]} ${newArr[innerIndex]}`
+        : newArr[innerIndex];
     }
-    tempString = tempString.trim();
-    arrVertical.push(tempString);
   }
+  console.log(arrVertical);
   return arrVertical;
 }
+
+console.log(getVertical(["1 2 3", "4 5 6", "7 8 9"]));
 
 function getLeftDiag(count) {
   let strLeftDiag = "";
