@@ -185,7 +185,7 @@ function getRightDiag(count) {
   return strRightDiag.trim();
 }
 
-console.table(getWinningTiles(tiles.textContent));
+// console.table(getWinningTiles(nTiles));
 
 // Get tile count from input field
 let btnStart = document.querySelector("#btnStart");
@@ -194,7 +194,38 @@ btnStart.addEventListener("click", (e) => {
   // save tile number
   let inputText = document.querySelector(".tile-count").value;
   nTiles = +inputText >= 3 && +inputText <= 9 ? inputText : null;
+  console.log(createTiles(nTiles));
 });
+
+// ---------------------------------------------- //
+// -------------Creating the tiles-------------- //
+// ---------------------------------------------- //
+let tilesContainer = document.querySelector("#tiles-container");
+let tileWidth = 80;
+
+// create divs based on the number of game tiles
+function createTiles(tileCount) {
+  // Clear existing children
+  tilesContainer.innerHTML = "";
+
+  // Set new container width
+  tilesContainer.style.width = `${tileCount * tileWidth}px`;
+
+  // Populate new set of child elements
+  for (let i = 0; i < Math.pow(tileCount, 2); i++) {
+    // Define new tile, add style + class + dataset attributes
+    let btn = document.createElement("button");
+    btn.textContent = "";
+    btn.style.height = `${tileWidth}px`;
+    btn.style.width = `${tileWidth}px`;
+    btn.classList.add("play-box");
+    btn.dataset.id = i + 1;
+    // console.log("id:", btn.dataset.id);
+
+    // add new tile to container
+    tilesContainer.appendChild(btn);
+  }
+}
 
 // get the number of tiles
 // build the win arrays
