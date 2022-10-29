@@ -128,12 +128,11 @@ function setDisplayText(control, value) {
 // dynamic tic-tac-toe
 function getWinningTiles(count) {
   let finalArray = [];
-  finalArray.push(
-    ...getHorizontal(count),
-    ...getVertical([...getHorizontal(count)]),
-    getLeftDiag([...getHorizontal(count)]),
-    getRightDiag([...getHorizontal(count)])
-  );
+  let arrHorizontal = getHorizontal(count);
+  let arrVertical = getVertical([...arrHorizontal]);
+  let strLeftDiag = getLeftDiag([...arrHorizontal]);
+  let strRightDiag = getRightDiag([...arrHorizontal]);
+  finalArray.push(...arrHorizontal, ...arrVertical, strLeftDiag, strRightDiag);
   return finalArray;
 }
 
