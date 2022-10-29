@@ -6,7 +6,9 @@ let tiles = document.querySelector(".tile-count");
 let gameTiles = document.querySelectorAll(".play-box");
 let winningArray = ["123", "456", "789", "147", "258", "369", "159", "357"];
 let dynamicWinArray; // dynamically construct the winning array
-let tileCount = winningArray[0].length;
+// let tileCount = winningArray[0].length;
+// let tileCount = dynamicWinArray[0].length;
+let tileCount;
 let xCount = 0;
 let oCount = 0;
 let xIndices = "";
@@ -74,15 +76,15 @@ function getWinner(playCount, player, strIndices) {
   sortedIndices = sortedIndices.sort((a, b) => a - b).join("");
   if (playCount < tileCount) {
   } else if (sortedIndices.length === tileCount) {
-    for (let item of winningArray) {
+    for (let item of dynamicWinArray) {
       if (item.includes(sortedIndices) || sortedIndices.includes(item)) {
         return "Player '" + player + "' wins";
       }
     }
   } else {
     // Check if player wins the round
-    for (let i = 0; i < winningArray.length; i++) {
-      let winItem = winningArray[i];
+    for (let i = 0; i < dynamicWinArray.length; i++) {
+      let winItem = dynamicWinArray[i];
       let count = 0;
       for (let j = 0; j < winItem.length; j++) {
         if (sortedIndices.includes(winItem[j])) {
@@ -205,6 +207,7 @@ btnStart.addEventListener("click", (e) => {
   } else {
     dynamicWinArray = [...getWinningTiles(nTiles)];
     tileCount = dynamicWinArray[0].split(" ").length;
+    console.log(dynamicWinArray, tileCount);
   }
 
   // Call function to create tiles
