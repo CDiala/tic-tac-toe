@@ -58,17 +58,11 @@ function markTile(tile) {
 }
 
 function setPlayIndex(num) {
-  strNum = num.toString();
+  let strNum = num.toString();
   // Save player's tiles
-  if (currentPlayer === "X") {
-    if (!xIndices.includes(strNum)) {
-      xIndices += strNum;
-    }
-  } else {
-    if (!oIndices.includes(strNum)) {
-      oIndices += strNum;
-    }
-  }
+  currentPlayer === "X"
+    ? (xIndices += ` ${strNum}`)
+    : (oIndices += ` ${strNum}`);
 }
 
 function getWinner(playCount, player, strIndices) {
