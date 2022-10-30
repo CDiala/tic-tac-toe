@@ -66,25 +66,28 @@ function setPlayIndex(num) {
 }
 
 function getWinner(playCount, player, strIndices) {
-  let sortedIndices = String(strIndices).split("");
-  sortedIndices = sortedIndices.sort((a, b) => a - b).join("");
   if (playCount < tileCount) {
-  } else if (sortedIndices.length === tileCount) {
-    for (let item of dynamicWinArray) {
-      if (item.includes(sortedIndices) || sortedIndices.includes(item)) {
-        return "Player '" + player + "' wins";
-      }
-    }
   } else {
-    // Check if player wins the round
-    for (let i = 0; i < dynamicWinArray.length; i++) {
-      let winItem = dynamicWinArray[i];
-      let count = 0;
-      for (let j = 0; j < winItem.length; j++) {
-        if (sortedIndices.includes(winItem[j])) {
+    // Sort the strIndices to mimic winArrayList items
+    let strIndicesArray = String(strIndices).trim().split(" ");
+    let sortedIndicesArray = strIndicesArray.sort((a, b) => a - b);
+
+    // Filter all win items that begin with the same number as the user's first tile
+    let result = dynamicWinArray.filter(
+      (item) => sortedIndicesArray[0] === item[0]
+    );
+
+    // Loop thru the resuts and check which one matches the player's tiles
+    for (let i = 0; i < result.length; i++) {
+      let arrWin = result[i].split(" ");
+      let count = 1;
+      for (let j = 1; j < arrWin.length; j++) {
+        if (sortedIndicesArray.includes(arrWin[j])) {
           count++;
         }
-        if (count === winItem.length) {
+        console.log("count, nTiles:", count, nTiles);
+        if (count === +nTiles) {
+          console.log("player wins");
           return "Player '" + player + "' wins";
         }
       }
