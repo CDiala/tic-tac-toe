@@ -6,32 +6,11 @@ let tiles = document.querySelector(".tile-count");
 let gameTiles = document.querySelectorAll(".play-box");
 let winningArray = ["123", "456", "789", "147", "258", "369", "159", "357"];
 let dynamicWinArray; // dynamically construct the winning array
-// let tileCount = winningArray[0].length;
-// let tileCount = dynamicWinArray[0].length;
 let tileCount;
 let xCount = 0;
 let oCount = 0;
 let xIndices = "";
 let oIndices = "";
-
-// gameTiles.forEach((tile) => {
-//   tile.addEventListener("click", () => {
-//     // do nothing if tile is not blank
-//     // else if a winner hasn't emerged, execute code
-//     if (tile.innerHTML !== "") {
-//     } else if (!winnerLabel.innerHTML.includes("wins")) {
-//       markTile(tile);
-//       countPlay();
-//       setPlayIndex(tile.dataset.id);
-//       winnerLabel.innerHTML += getWinner(
-//         currentPlayer === "X" ? xCount : oCount,
-//         currentPlayer,
-//         currentPlayer === "X" ? xIndices : oIndices
-//       );
-//       setPlayer();
-//     }
-//   });
-// });
 
 function setPlayer() {
   if (currentPlayer === "X") {
@@ -271,8 +250,3 @@ function addClickEvent() {
     });
   });
 }
-
-// get the number of tiles
-// build the win arrays
-// build the game tiles
-// proceed to play game
