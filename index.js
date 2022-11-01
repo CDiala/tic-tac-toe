@@ -66,7 +66,6 @@ function setPlayIndex(num) {
 }
 
 function getWinner(playCount, player, strIndices) {
-  let result = dynamicWinArray.map((list) => [...list.split(" ")]); // do this when creating the arrays
   // Sort the strIndices to mimic winArrayList items
   let strIndicesArray = String(strIndices).trim().split(" ");
   let sortedIndicesArray = strIndicesArray.sort((a, b) => a - b);
@@ -74,8 +73,8 @@ function getWinner(playCount, player, strIndices) {
     return "";
   } else if (playCount === tileCount) {
     // Loop thru the resuts and check which one matches the player's tiles
-    for (let i = 0; i < result.length; i++) {
-      if (result[i].join("") === sortedIndicesArray.join("")) {
+    for (let i = 0; i < dynamicWinArray.length; i++) {
+      if (dynamicWinArray[i].join("") === sortedIndicesArray.join("")) {
         return `Player ${player} wins`;
       }
     }
@@ -86,10 +85,10 @@ function getWinner(playCount, player, strIndices) {
         update count accordingly.
       if count === nTiles, return the corresponding response.
     */
-    for (let i = 0; i < result.length; i++) {
+    for (let i = 0; i < dynamicWinArray.length; i++) {
       let count = 0;
       for (let j = 0; j < nTiles; j++) {
-        if (!sortedIndicesArray.includes(result[i][j])) {
+        if (!sortedIndicesArray.includes(dynamicWinArray[i][j])) {
         } else {
           count++;
         }
@@ -208,9 +207,10 @@ btnStart.addEventListener("click", (e) => {
   if (nTiles === null) {
     console.log("please enter a number between 3 and 9");
   } else {
-    dynamicWinArray = [...getWinningTiles(nTiles)];
-    tileCount = dynamicWinArray[0].split(" ").length;
-    console.log(dynamicWinArray, tileCount);
+    dynamicWinArray = [
+      ...getWinningTiles(nTiles).map((list) => [...list.split(" ")]),
+    ];
+    tileCount = dynamicWinArray[0].length;
   }
 
   // Call function to create tiles
