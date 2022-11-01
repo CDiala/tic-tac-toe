@@ -91,7 +91,7 @@ resetButton.addEventListener("click", () => {
 
 // function to clear tiles
 function clearTiles() {
-  gameTiles.forEach((tile) => {
+  tilesContainer.childNodes.forEach((tile) => {
     tile.innerHTML = "";
   });
   xCount = 0;
