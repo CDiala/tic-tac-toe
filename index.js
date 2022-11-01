@@ -66,35 +66,88 @@ function setPlayIndex(num) {
 }
 
 function getWinner(playCount, player, strIndices) {
+  let result = dynamicWinArray.map((list) => [...list.split(" ")]); // do this when creating the arrays
+  // Sort the strIndices to mimic winArrayList items
+  let strIndicesArray = String(strIndices).trim().split(" ");
+  let sortedIndicesArray = strIndicesArray.sort((a, b) => a - b);
   if (playCount < tileCount) {
-  } else {
-    // Sort the strIndices to mimic winArrayList items
-    let strIndicesArray = String(strIndices).trim().split(" ");
-    let sortedIndicesArray = strIndicesArray.sort((a, b) => a - b);
-
-    // Filter all win items that begin with the same number as the user's first tile
-    let result = dynamicWinArray.filter(
-      (item) => sortedIndicesArray[0] === item[0]
-    );
-
+    return "";
+  } else if (playCount === tileCount) {
     // Loop thru the resuts and check which one matches the player's tiles
+    // console.log(result);
     for (let i = 0; i < result.length; i++) {
-      let arrWin = result[i].split(" ");
-      let count = 1;
-      for (let j = 1; j < arrWin.length; j++) {
-        if (sortedIndicesArray.includes(arrWin[j])) {
+      // console.log(result[i], sortedIndicesArray);
+      // console.log(
+      //   "result[i] === sortedIndicesArray?",
+      //   result[i].join("") === sortedIndicesArray.join("")
+      // );
+      if (result[i].join("") === sortedIndicesArray.join("")) {
+        console.log("player wins");
+        return `Player ${player} wins`;
+      }
+    }
+  } else {
+    /*
+    loop through the dynamicWinArray
+      loop through the items and see if the player's tiles contains them.
+        update count accordingly.
+      if count === nTiles, return the corresponding response.
+    */
+    for (let i = 0; i < result.length; i++) {
+      let count = 0;
+      for (let j = 0; j < nTiles; j++) {
+        console.log(sortedIndicesArray, result, result[i][j], i, j);
+        if (!sortedIndicesArray.includes(result[i][j])) {
+        } else {
           count++;
         }
-        console.log("count, nTiles:", count, nTiles);
-        if (count === +nTiles) {
-          console.log("player wins");
-          return "Player '" + player + "' wins";
-        }
+      }
+      if (count === +nTiles) {
+        console.log("player wins");
+        return `Player ${player} wins`;
       }
     }
   }
   return "";
 }
+
+// function getWinner(playCount, player, strIndices) {
+//   if (playCount < tileCount) {
+//   } else {
+//     // Sort the strIndices to mimic winArrayList items
+//     let strIndicesArray = String(strIndices).trim().split(" ");
+//     let sortedIndicesArray = strIndicesArray.sort((a, b) => a - b);
+
+//     // Filter all win items that begin with the same number as the user's first tile
+//     let result = dynamicWinArray.filter(
+//       (item) => sortedIndicesArray[0] === item[0]
+//     );
+//     console.log(dynamicWinArray);
+//     console.log(sortedIndicesArray, result[0].split(" "));
+//     // Loop thru the resuts and check which one matches the player's tiles
+//     let count = 1;
+//     for (let i = 0; i < result.length; i++) {
+//       // code not calculating well. Check algorithm
+//       let arrWin = result[i].split(" ");
+//       for (let j = 1; j < arrWin.length; j++) {
+//         // if (sortedIndicesArray.includes(arrWin[j])) {
+//         if (arrWin[j].split(" ").includes(sortedIndicesArray)) {
+//           count++;
+//           console.log(`count is now ${count}`);
+//         } else {
+//           console.log(`item ${arrWin[j]} not found`);
+//           break;
+//         }
+//       }
+//     }
+//     console.log("count, nTiles:", count, nTiles);
+//     if (count === +nTiles) {
+//       console.log("player wins");
+//       return "Player '" + player + "' wins";
+//     }
+//   }
+//   return "";
+// }
 
 // reset game
 let resetButton = document.querySelector(".reset");
