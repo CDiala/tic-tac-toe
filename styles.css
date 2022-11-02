@@ -1,3 +1,50 @@
+body {
+  height: 100vh;
+  margin: 0;
+  text-align: center;
+}
+
+.game-title,
+.game-controls {
+  margin: 0 0 20px;
+}
+
+.tile-count {
+  border: none;
+  border-bottom: solid;
+  border-bottom-color: rebeccapurple;
+  /* border-radius: 5px; */
+  font-size: 16px;
+  line-height: 24px;
+  margin-right: 20px;
+  padding: 10px;
+  text-align: center;
+  width: 15vw;
+}
+
+#btnStart,
+.reset {
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px 40px;
+}
+
+#btnStart {
+  background-color: #5711a5;
+  margin-right: 20px;
+}
+
+.reset {
+  background-color: #db8b1b;
+}
+
+.tile-count,
+#btnStart {
+  outline: none;
+}
+
 .game-container {
   display: flex;
   flex-wrap: wrap;
@@ -11,8 +58,15 @@
   width: 80px;
 }
 
+.play-zone {
+  align-items: baseline;
+  /* background-color: #8862ae; */
+  display: flex;
+  justify-content: space-around;
+}
+
 #tiles-container {
   display: flex;
   flex-wrap: wrap;
-  margin: auto;
+  /* margin: auto; */
 }
