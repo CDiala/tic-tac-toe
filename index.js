@@ -180,23 +180,41 @@ let nTiles;
 btnStart.addEventListener("click", (e) => {
   // save tile number
   let inputText = document.querySelector(".tile-count").value;
-  nTiles = +inputText >= 3 && +inputText <= 9 ? inputText : null;
 
-  // Get winning array list if nTiles is valid
-  if (nTiles === null) {
-    errorDisplay.innerHTML = `Incorrect entry: '${nTiles}'.
+  // Get winning array list if input is valid
+  if (!(+inputText >= 3 && +inputText <= 9)) {
+    // dynamicWinArray = [];
+    tilesContainer.innerHTML = "";
+    errorDisplay.innerHTML = `Incorrect entry: '${inputText}'.
     Please enter a number between 3 and 9.`;
-    console.log("please enter a number between 3 and 9");
   } else {
     errorDisplay.innerHTML = "";
+    nTiles = inputText;
     dynamicWinArray = [
       ...getWinningTiles(nTiles).map((list) => [...list.split(" ")]),
     ];
     tileCount = dynamicWinArray[0].length;
+
+    // Call function to create tiles
+    createTiles(nTiles);
   }
 
-  // Call function to create tiles
-  createTiles(nTiles);
+  // // save tile number
+  // let inputText = document.querySelector(".tile-count").value;
+  // nTiles = +inputText >= 3 && +inputText <= 9 ? inputText : null;
+
+  // // Get winning array list if nTiles is valid
+  // if (nTiles === null) {
+  //   errorDisplay.innerHTML = `Incorrect entry: '${nTiles}'.
+  //   Please enter a number between 3 and 9.`;
+  //   console.log("please enter a number between 3 and 9");
+  // } else {
+  //   errorDisplay.innerHTML = "";
+  //   dynamicWinArray = [
+  //     ...getWinningTiles(nTiles).map((list) => [...list.split(" ")]),
+  //   ];
+  //   tileCount = dynamicWinArray[0].length;
+  // }
 });
 
 // ---------------------------------------------- //
