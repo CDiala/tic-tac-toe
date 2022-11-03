@@ -2,9 +2,7 @@ let playerStart = "X";
 let currentPlayer = playerStart;
 let player = document.querySelector(".player");
 let winnerLabel = document.querySelector(".winner");
-let tiles = document.querySelector(".tile-count");
 let gameTiles = document.querySelectorAll(".play-box");
-let winningArray = ["123", "456", "789", "147", "258", "369", "159", "357"];
 let dynamicWinArray; // dynamically construct the winning array
 let tileCount;
 let xCount = 0;
