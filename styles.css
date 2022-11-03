@@ -70,3 +70,7 @@ body {
   flex-wrap: wrap;
   /* margin: auto; */
 }
+
+.error {
+  color: rgb(238, 134, 15);
+}
