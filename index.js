@@ -2,6 +2,7 @@ let playerStart = "X";
 let currentPlayer = playerStart;
 let player = document.querySelector(".player");
 let winnerLabel = document.querySelector(".winner");
+let errorDisplay = document.querySelector(".error");
 let gameTiles = document.querySelectorAll(".play-box");
 let dynamicWinArray; // dynamically construct the winning array
 let tileCount;
@@ -92,6 +93,7 @@ function clearTiles() {
   tilesContainer.childNodes.forEach((tile) => {
     tile.innerHTML = "";
   });
+  errorDisplay.innerHTML = "";
   xCount = 0;
   oCount = 0;
   xIndices = "";
@@ -182,8 +184,11 @@ btnStart.addEventListener("click", (e) => {
 
   // Get winning array list if nTiles is valid
   if (nTiles === null) {
+    errorDisplay.innerHTML = `Incorrect entry: '${nTiles}'.
+    Please enter a number between 3 and 9.`;
     console.log("please enter a number between 3 and 9");
   } else {
+    errorDisplay.innerHTML = "";
     dynamicWinArray = [
       ...getWinningTiles(nTiles).map((list) => [...list.split(" ")]),
     ];
