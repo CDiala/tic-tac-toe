@@ -4,31 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Tic-Tac-Toe</title>
     <link rel="stylesheet" href="styles.css" />
-    <!-- <script src="./Test.js" defer></script> -->
     <script src="./index.js" defer></script>
   </head>
   <body>
-    <input type="text" class="tile-count" />
-    <button id="btnStart">Start</button>
-    <p class="result"></p>
-    <div class="player">Player: X</div>
-    <div class="winner">Winner:</div>
-    <button type="reset" class="reset">Reset</button>
-    <section class="game-container">
-      <button class="play-box" data-id="1"></button>
-      <button class="play-box" data-id="2"></button>
-      <button class="play-box" data-id="3"></button>
-      <button class="play-box" data-id="4"></button>
-      <button class="play-box" data-id="5"></button>
-      <button class="play-box" data-id="6"></button>
-      <button class="play-box" data-id="7"></button>
-      <button class="play-box" data-id="8"></button>
-      <button class="play-box" data-id="9"></button>
-    </section>
-    <section>
+    <h1 class="game-title">Let's Play Tic-Tac-Toe!</h1>
+    <div class="game-controls">
+      <input
+        type="text"
+        class="tile-count"
+        placeholder="Number of square tiles..."
+      />
+      <button id="btnStart">Start</button>
+      <button type="reset" class="reset">Reset</button>
+    </div>
+    <p class="error"></p>
+    <section class="play-zone">
+      <div class="player">Player: X</div>
       <div id="tiles-container"></div>
+      <div class="winner">Winner:</div>
     </section>
   </body>
 </html>

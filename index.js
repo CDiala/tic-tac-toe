@@ -2,36 +2,14 @@ let playerStart = "X";
 let currentPlayer = playerStart;
 let player = document.querySelector(".player");
 let winnerLabel = document.querySelector(".winner");
-let tiles = document.querySelector(".tile-count");
+let errorDisplay = document.querySelector(".error");
 let gameTiles = document.querySelectorAll(".play-box");
-let winningArray = ["123", "456", "789", "147", "258", "369", "159", "357"];
 let dynamicWinArray; // dynamically construct the winning array
-// let tileCount = winningArray[0].length;
-// let tileCount = dynamicWinArray[0].length;
 let tileCount;
 let xCount = 0;
 let oCount = 0;
 let xIndices = "";
 let oIndices = "";
-
-// gameTiles.forEach((tile) => {
-//   tile.addEventListener("click", () => {
-//     // do nothing if tile is not blank
-//     // else if a winner hasn't emerged, execute code
-//     if (tile.innerHTML !== "") {
-//     } else if (!winnerLabel.innerHTML.includes("wins")) {
-//       markTile(tile);
-//       countPlay();
-//       setPlayIndex(tile.dataset.id);
-//       winnerLabel.innerHTML += getWinner(
-//         currentPlayer === "X" ? xCount : oCount,
-//         currentPlayer,
-//         currentPlayer === "X" ? xIndices : oIndices
-//       );
-//       setPlayer();
-//     }
-//   });
-// });
 
 function setPlayer() {
   if (currentPlayer === "X") {
@@ -66,30 +44,35 @@ function setPlayIndex(num) {
 }
 
 function getWinner(playCount, player, strIndices) {
+  // Sort the strIndices to mimic winArrayList items
+  let strIndicesArray = String(strIndices).trim().split(" ");
+  let sortedIndicesArray = strIndicesArray.sort((a, b) => a - b);
   if (playCount < tileCount) {
-  } else {
-    // Sort the strIndices to mimic winArrayList items
-    let strIndicesArray = String(strIndices).trim().split(" ");
-    let sortedIndicesArray = strIndicesArray.sort((a, b) => a - b);
-
-    // Filter all win items that begin with the same number as the user's first tile
-    let result = dynamicWinArray.filter(
-      (item) => sortedIndicesArray[0] === item[0]
-    );
-
+    return "";
+  } else if (playCount === tileCount) {
     // Loop thru the resuts and check which one matches the player's tiles
-    for (let i = 0; i < result.length; i++) {
-      let arrWin = result[i].split(" ");
-      let count = 1;
-      for (let j = 1; j < arrWin.length; j++) {
-        if (sortedIndicesArray.includes(arrWin[j])) {
+    for (let i = 0; i < dynamicWinArray.length; i++) {
+      if (dynamicWinArray[i].join("") === sortedIndicesArray.join("")) {
+        return `Player ${player} wins`;
+      }
+    }
+  } else {
+    /*
+    loop through the dynamicWinArray
+      loop through the items and see if the player's tiles contains them.
+        update count accordingly.
+      if count === nTiles, return the corresponding response.
+    */
+    for (let i = 0; i < dynamicWinArray.length; i++) {
+      let count = 0;
+      for (let j = 0; j < nTiles; j++) {
+        if (!sortedIndicesArray.includes(dynamicWinArray[i][j])) {
+        } else {
           count++;
         }
-        console.log("count, nTiles:", count, nTiles);
-        if (count === +nTiles) {
-          console.log("player wins");
-          return "Player '" + player + "' wins";
-        }
+      }
+      if (count === +nTiles) {
+        return `Player ${player} wins`;
       }
     }
   }
@@ -107,9 +90,10 @@ resetButton.addEventListener("click", () => {
 
 // function to clear tiles
 function clearTiles() {
-  gameTiles.forEach((tile) => {
+  tilesContainer.childNodes.forEach((tile) => {
     tile.innerHTML = "";
   });
+  errorDisplay.innerHTML = "";
   xCount = 0;
   oCount = 0;
   xIndices = "";
@@ -196,19 +180,24 @@ let nTiles;
 btnStart.addEventListener("click", (e) => {
   // save tile number
   let inputText = document.querySelector(".tile-count").value;
-  nTiles = +inputText >= 3 && +inputText <= 9 ? inputText : null;
 
-  // Get winning array list if nTiles is valid
-  if (nTiles === null) {
-    console.log("please enter a number between 3 and 9");
+  // Get winning array list if input is valid
+  if (!(+inputText >= 3 && +inputText <= 9)) {
+    // dynamicWinArray = [];
+    tilesContainer.innerHTML = "";
+    errorDisplay.innerHTML = `Incorrect entry: '${inputText}'.
+    Please enter a number between 3 and 9.`;
   } else {
-    dynamicWinArray = [...getWinningTiles(nTiles)];
-    tileCount = dynamicWinArray[0].split(" ").length;
-    console.log(dynamicWinArray, tileCount);
-  }
+    errorDisplay.innerHTML = "";
+    nTiles = inputText;
+    dynamicWinArray = [
+      ...getWinningTiles(nTiles).map((list) => [...list.split(" ")]),
+    ];
+    tileCount = dynamicWinArray[0].length;
 
-  // Call function to create tiles
-  createTiles(nTiles);
+    // Call function to create tiles
+    createTiles(nTiles);
+  }
 });
 
 // ---------------------------------------------- //
@@ -265,8 +254,3 @@ function addClickEvent() {
     });
   });
 }
-
-// get the number of tiles
-// build the win arrays
-// build the game tiles
-// proceed to play game
