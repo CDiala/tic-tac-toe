@@ -74,3 +74,8 @@ body {
 .error {
   color: rgb(238, 134, 15);
 }
+
+.players,
+.player {
+  font-size: 40px;
+}
