@@ -17,7 +17,7 @@ function setPlayer() {
   } else {
     currentPlayer = "X";
   }
-  setDisplayText(player, `Player: ${currentPlayer}`);
+  setDisplayText(player, `${currentPlayer}`);
 }
 
 function countPlay() {
@@ -84,7 +84,7 @@ let resetButton = document.querySelector(".reset");
 resetButton.addEventListener("click", () => {
   clearTiles();
   currentPlayer = playerStart;
-  setDisplayText(player, `Player: ${currentPlayer}`);
+  setDisplayText(player, `${currentPlayer}`);
   setDisplayText(winnerLabel, "Winner:");
 });
 
