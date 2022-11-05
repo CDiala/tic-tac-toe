@@ -77,6 +77,7 @@ body {
 
 .players,
 .player,
-.winner-block {
+.winner-block__title,
+.winner {
   font-size: 40px;
 }
