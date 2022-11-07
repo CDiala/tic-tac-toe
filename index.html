@@ -9,29 +9,31 @@
     <script src="./index.js" defer></script>
   </head>
   <body>
-    <h1 class="game-title">Let's Play Tic-Tac-Toe!</h1>
-    <div class="game-controls">
-      <input
-        type="text"
-        class="tile-count"
-        placeholder="Number of square tiles..."
-      />
-      <button id="btnStart">Start</button>
-      <button type="reset" class="reset">Reset</button>
-    </div>
-    <p class="error"></p>
-    <section class="play-zone">
-      <div class="">
-        <p class="players">Next Player</p>
-        <br />
-        <span class="player">X</span>
+    <main class="game-box">
+      <h1 class="game-title">Let's Play Tic-Tac-Toe!</h1>
+      <div class="game-controls">
+        <input
+          type="text"
+          class="tile-count"
+          placeholder="Number of square tiles..."
+        />
+        <button id="btnStart">Start</button>
+        <button type="reset" class="reset">Reset</button>
       </div>
-      <div id="tiles-container"></div>
-      <div class="winner-block">
-        <p class="winner-block__title">Winner</p>
-        <br />
-        <span class="winner"></span>
-      </div>
-    </section>
+      <p class="error"></p>
+      <section class="play-zone">
+        <div class="">
+          <p class="players">Next Player</p>
+          <br />
+          <span class="player">X</span>
+        </div>
+        <div id="tiles-container"></div>
+        <div class="winner-block">
+          <p class="winner-block__title">Winner</p>
+          <br />
+          <span class="winner"></span>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
