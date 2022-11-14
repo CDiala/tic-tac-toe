@@ -11,3 +11,6 @@
 
 ## Live URL
 https://cdiala.github.io/tic-tac-toe/
+
+## Update
+- Game logic has been modified to allow between 3 - 9 game tiles.
