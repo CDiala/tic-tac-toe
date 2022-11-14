@@ -4,6 +4,16 @@ body {
   text-align: center;
 }
 
+.game-box {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: flex-start;
+  padding: 20px;
+  row-gap: 20px;
+}
+
 .game-title,
 .game-controls {
   margin: 0 0 20px;
@@ -73,4 +83,11 @@ body {
 
 .error {
   color: rgb(238, 134, 15);
+}
+
+.players,
+.player,
+.winner-block__title,
+.winner {
+  font-size: 40px;
 }

@@ -17,7 +17,7 @@ function setPlayer() {
   } else {
     currentPlayer = "X";
   }
-  setDisplayText(player, `Player: ${currentPlayer}`);
+  setDisplayText(player, `${currentPlayer}`);
 }
 
 function countPlay() {
@@ -53,7 +53,7 @@ function getWinner(playCount, player, strIndices) {
     // Loop thru the resuts and check which one matches the player's tiles
     for (let i = 0; i < dynamicWinArray.length; i++) {
       if (dynamicWinArray[i].join("") === sortedIndicesArray.join("")) {
-        return `Player ${player} wins`;
+        return `Player ${player}`;
       }
     }
   } else {
@@ -72,7 +72,7 @@ function getWinner(playCount, player, strIndices) {
         }
       }
       if (count === +nTiles) {
-        return `Player ${player} wins`;
+        return `Player ${player}`;
       }
     }
   }
@@ -84,8 +84,8 @@ let resetButton = document.querySelector(".reset");
 resetButton.addEventListener("click", () => {
   clearTiles();
   currentPlayer = playerStart;
-  setDisplayText(player, `Player: ${currentPlayer}`);
-  setDisplayText(winnerLabel, "Winner:");
+  setDisplayText(player, `${currentPlayer}`);
+  setDisplayText(winnerLabel, "");
 });
 
 // function to clear tiles
@@ -240,7 +240,8 @@ function addClickEvent() {
       // do nothing if tile is not blank
       // else if a winner hasn't emerged, execute code
       if (tile.innerHTML !== "") {
-      } else if (!winnerLabel.innerHTML.includes("wins")) {
+        // } else if (!winnerLabel.innerHTML.includes("wins")) {
+      } else if (!winnerLabel.innerHTML.includes("Player")) {
         markTile(tile);
         countPlay();
         setPlayIndex(tile.dataset.id);
