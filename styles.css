@@ -91,3 +91,71 @@ body {
 .winner {
   font-size: 40px;
 }
+
+/* ----------------Responsiveness---------------- */
+
+/* -------------Mobile Screen - 320px------------ */
+@media screen and (max-width: 320px) {
+  .game-title {
+    font-size: 40px;
+    margin: 10px auto;
+    width: 85%;
+  }
+
+  .game-controls {
+    align-items: center;
+    column-gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 0;
+  }
+
+  .tile-count {
+    margin: 0 0 20px;
+    width: 100%;
+  }
+
+  #btnStart {
+    margin-right: 0;
+  }
+
+  .error {
+    margin: 0;
+  }
+
+  #btnStart,
+  .reset {
+    flex: 1;
+    padding: 10px 0;
+  }
+
+  .play-zone {
+    align-items: center;
+    flex-direction: column;
+    row-gap: 15px;
+  }
+
+  .players {
+    margin: 0;
+  }
+
+  .line-break,
+  .winner-break {
+    display: none;
+  }
+
+  .play-zone * {
+    font-size: 24px;
+  }
+
+  .player-turn {
+    display: flex;
+    justify-content: space-evenly;
+    width: 85%;
+  }
+
+  .winner-block__title {
+    margin: 0;
+  }
+}
