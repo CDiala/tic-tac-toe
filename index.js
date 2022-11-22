@@ -204,15 +204,22 @@ btnStart.addEventListener("click", (e) => {
 // -------------Creating the tiles-------------- //
 // ---------------------------------------------- //
 let tilesContainer = document.querySelector("#tiles-container");
-let tileWidth = 80;
 
 // create divs based on the number of game tiles
+// and style tile container and game tiles based
+// on the screen width.
 function createTiles(tileCount) {
+  // Get screen width
+  let tilesContainerWidth = document.body.offsetWidth - 40;
+  let tileWidth = tilesContainerWidth / tileCount;
+  // let tileWidth = 80;
+
   // Clear existing children
   tilesContainer.innerHTML = "";
 
   // Set new container width
-  tilesContainer.style.width = `${tileCount * tileWidth}px`;
+  // tilesContainer.style.width = `${tileCount * tileWidth}px`;
+  tilesContainer.style.width = `${tilesContainerWidth}px`;
 
   // Populate new set of child elements
   for (let i = 0; i < Math.pow(tileCount, 2); i++) {
@@ -255,14 +262,3 @@ function addClickEvent() {
     });
   });
 }
-
-// --------------------------------------------------- //
-// -------------Adding Responsiveness to game tiles width, height and container-------------- //
-// --------------------------------------------------- //
-
-// pseudocode
-/*
-  1. Get screen width
-  2. Subtract paddings from screen width to get the remaining width
-  3. Divide the final width by the number of tiles to be played. This gives the width/height of each tile
-*/
