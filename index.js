@@ -255,3 +255,14 @@ function addClickEvent() {
     });
   });
 }
+
+// --------------------------------------------------- //
+// -------------Adding Responsiveness to game tiles width, height and container-------------- //
+// --------------------------------------------------- //
+
+// pseudocode
+/*
+  1. Get screen width
+  2. Subtract paddings from screen width to get the remaining width
+  3. Divide the final width by the number of tiles to be played. This gives the width/height of each tile
+*/
