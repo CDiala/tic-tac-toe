@@ -79,7 +79,7 @@ function getWinner(playCount, player, strIndices) {
   return "";
 }
 
-// reset game
+// Reset game
 let resetButton = document.querySelector(".reset");
 resetButton.addEventListener("click", () => {
   clearTiles();
@@ -88,7 +88,7 @@ resetButton.addEventListener("click", () => {
   setDisplayText(winnerLabel, "");
 });
 
-// function to clear tiles
+// Function to clear tiles
 function clearTiles() {
   tilesContainer.childNodes.forEach((tile) => {
     tile.innerHTML = "";
@@ -100,7 +100,7 @@ function clearTiles() {
   oIndices = "";
 }
 
-// function to reset texts
+// Function to reset texts
 function setDisplayText(control, value) {
   control["innerHTML"] = value;
 }
@@ -162,7 +162,6 @@ function getLeftDiag(arr) {
   return strLeftDiag.trim();
 }
 
-// function getRightDiag(count) {
 function getRightDiag(arr) {
   let strRightDiag = "";
   let itemLength = arr.length - 1;
@@ -178,12 +177,11 @@ function getRightDiag(arr) {
 let btnStart = document.querySelector("#btnStart");
 let nTiles;
 btnStart.addEventListener("click", (e) => {
-  // save tile number
+  // Save tile number
   let inputText = document.querySelector(".tile-count").value;
 
   // Get winning array list if input is valid
   if (!(+inputText >= 3 && +inputText <= 9)) {
-    // dynamicWinArray = [];
     tilesContainer.innerHTML = "";
     errorDisplay.innerHTML = `Incorrect entry: '${inputText}'.
     Please enter a number between 3 and 9.`;
@@ -205,7 +203,7 @@ btnStart.addEventListener("click", (e) => {
 // ---------------------------------------------- //
 let tilesContainer = document.querySelector("#tiles-container");
 
-// create divs based on the number of game tiles
+// Create divs based on the number of game tiles
 // and style tile container and game tiles based
 // on the screen width.
 function createTiles(tileCount) {
@@ -234,9 +232,10 @@ function createTiles(tileCount) {
     btn.classList.add("play-box");
     btn.dataset.id = i + 1;
 
-    // add new tile to container
+    // Add new tile to container
     tilesContainer.appendChild(btn);
   }
+
   addClickEvent();
 }
 
@@ -247,10 +246,9 @@ function createTiles(tileCount) {
 function addClickEvent() {
   tilesContainer.childNodes.forEach((tile) => {
     tile.addEventListener("click", () => {
-      // do nothing if tile is not blank
+      // Do nothing if tile is not blank
       // else if a winner hasn't emerged, execute code
       if (tile.innerHTML !== "") {
-        // } else if (!winnerLabel.innerHTML.includes("wins")) {
       } else if (!winnerLabel.innerHTML.includes("Player")) {
         markTile(tile);
         countPlay();
