@@ -79,7 +79,7 @@ function getWinner(playCount, player, strIndices) {
   return "";
 }
 
-// reset game
+// Reset game
 let resetButton = document.querySelector(".reset");
 resetButton.addEventListener("click", () => {
   clearTiles();
@@ -88,7 +88,7 @@ resetButton.addEventListener("click", () => {
   setDisplayText(winnerLabel, "");
 });
 
-// function to clear tiles
+// Function to clear tiles
 function clearTiles() {
   tilesContainer.childNodes.forEach((tile) => {
     tile.innerHTML = "";
@@ -100,7 +100,7 @@ function clearTiles() {
   oIndices = "";
 }
 
-// function to reset texts
+// Function to reset texts
 function setDisplayText(control, value) {
   control["innerHTML"] = value;
 }
@@ -162,7 +162,6 @@ function getLeftDiag(arr) {
   return strLeftDiag.trim();
 }
 
-// function getRightDiag(count) {
 function getRightDiag(arr) {
   let strRightDiag = "";
   let itemLength = arr.length - 1;
@@ -178,12 +177,11 @@ function getRightDiag(arr) {
 let btnStart = document.querySelector("#btnStart");
 let nTiles;
 btnStart.addEventListener("click", (e) => {
-  // save tile number
+  // Save tile number
   let inputText = document.querySelector(".tile-count").value;
 
   // Get winning array list if input is valid
   if (!(+inputText >= 3 && +inputText <= 9)) {
-    // dynamicWinArray = [];
     tilesContainer.innerHTML = "";
     errorDisplay.innerHTML = `Incorrect entry: '${inputText}'.
     Please enter a number between 3 and 9.`;
@@ -204,15 +202,25 @@ btnStart.addEventListener("click", (e) => {
 // -------------Creating the tiles-------------- //
 // ---------------------------------------------- //
 let tilesContainer = document.querySelector("#tiles-container");
-let tileWidth = 80;
 
-// create divs based on the number of game tiles
+// Create divs based on the number of game tiles
+// and style tile container and game tiles based
+// on the screen width.
 function createTiles(tileCount) {
+  // Get screen width and padding
+  let style = getComputedStyle(document.querySelector("main"));
+  let screenPadding = +style.paddingLeft.replace("px", "") * 2;
+  let screenWidth = +style.width.replace("px", "");
+
+  // Set screen width
+  let tilesContainerWidth = screenWidth - screenPadding;
+  let tileWidth = tilesContainerWidth / tileCount;
+
   // Clear existing children
   tilesContainer.innerHTML = "";
 
   // Set new container width
-  tilesContainer.style.width = `${tileCount * tileWidth}px`;
+  tilesContainer.style.width = `${tilesContainerWidth}px`;
 
   // Populate new set of child elements
   for (let i = 0; i < Math.pow(tileCount, 2); i++) {
@@ -224,9 +232,10 @@ function createTiles(tileCount) {
     btn.classList.add("play-box");
     btn.dataset.id = i + 1;
 
-    // add new tile to container
+    // Add new tile to container
     tilesContainer.appendChild(btn);
   }
+
   addClickEvent();
 }
 
@@ -237,10 +246,9 @@ function createTiles(tileCount) {
 function addClickEvent() {
   tilesContainer.childNodes.forEach((tile) => {
     tile.addEventListener("click", () => {
-      // do nothing if tile is not blank
+      // Do nothing if tile is not blank
       // else if a winner hasn't emerged, execute code
       if (tile.innerHTML !== "") {
-        // } else if (!winnerLabel.innerHTML.includes("wins")) {
       } else if (!winnerLabel.innerHTML.includes("Player")) {
         markTile(tile);
         countPlay();
@@ -254,4 +262,39 @@ function addClickEvent() {
       }
     });
   });
+}
+
+// ---------------------------------------------------- //
+// ------------Change game and tiles width------------- //
+// ------------based on screen size change------------- //
+// ---------------------------------------------------- //
+window.addEventListener("resize", () => {
+  if (tilesContainer.hasChildNodes) {
+    // Recalculate tiles container width
+    resizeGame();
+  }
+});
+
+function resizeGame() {
+  // Get screen width and padding
+  let style = getComputedStyle(document.querySelector("main"));
+  let screenPadding = +style.paddingLeft.replace("px", "") * 2;
+  let screenWidth = +style.width.replace("px", "");
+
+  if (screenWidth <= 768) {
+    // Resize game container
+    let tilesContainerWidth = screenWidth - screenPadding;
+    tilesContainer.style.width = `${tilesContainerWidth}px`;
+
+    // Get new tile width
+    let tileWidth = tilesContainerWidth / tileCount;
+
+    // Resize width and height of game tiles
+    let childCount = tilesContainer.childElementCount;
+
+    for (let i = 0; i < childCount; i++) {
+      tilesContainer.children.item(i).style.height = `${tileWidth}px`;
+      tilesContainer.children.item(i).style.width = `${tileWidth}px`;
+    }
+  }
 }
