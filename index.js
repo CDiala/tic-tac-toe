@@ -209,16 +209,19 @@ let tilesContainer = document.querySelector("#tiles-container");
 // and style tile container and game tiles based
 // on the screen width.
 function createTiles(tileCount) {
-  // Get screen width
-  let tilesContainerWidth = document.body.offsetWidth - 40;
+  // Get screen width and padding
+  let style = getComputedStyle(document.querySelector("main"));
+  let screenPadding = +style.paddingLeft.replace("px", "") * 2;
+  let screenWidth = +style.width.replace("px", "");
+
+  // Set screen width
+  let tilesContainerWidth = screenWidth - screenPadding;
   let tileWidth = tilesContainerWidth / tileCount;
-  // let tileWidth = 80;
 
   // Clear existing children
   tilesContainer.innerHTML = "";
 
   // Set new container width
-  // tilesContainer.style.width = `${tileCount * tileWidth}px`;
   tilesContainer.style.width = `${tilesContainerWidth}px`;
 
   // Populate new set of child elements
