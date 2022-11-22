@@ -265,3 +265,38 @@ function addClickEvent() {
     });
   });
 }
+
+// ---------------------------------------------------- //
+// ------------Change game and tiles width------------- //
+// ------------based on screen size change------------- //
+// ---------------------------------------------------- //
+window.addEventListener("resize", () => {
+  if (tilesContainer.hasChildNodes) {
+    // Recalculate tiles container width
+    resizeGame();
+  }
+});
+
+function resizeGame() {
+  // Get screen width and padding
+  let style = getComputedStyle(document.querySelector("main"));
+  let screenPadding = +style.paddingLeft.replace("px", "") * 2;
+  let screenWidth = +style.width.replace("px", "");
+
+  if (screenWidth <= 768) {
+    // Resize game container
+    let tilesContainerWidth = screenWidth - screenPadding;
+    tilesContainer.style.width = `${tilesContainerWidth}px`;
+
+    // Get new tile width
+    let tileWidth = tilesContainerWidth / tileCount;
+
+    // Resize width and height of game tiles
+    let childCount = tilesContainer.childElementCount;
+
+    for (let i = 0; i < childCount; i++) {
+      tilesContainer.children.item(i).style.height = `${tileWidth}px`;
+      tilesContainer.children.item(i).style.width = `${tileWidth}px`;
+    }
+  }
+}
