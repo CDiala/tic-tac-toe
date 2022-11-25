@@ -152,11 +152,44 @@ body {
 
   .player-turn {
     display: flex;
-    justify-content: space-evenly;
-    width: 85%;
   }
 
   .winner-block__title {
     margin: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .game-top {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .player-turn,
+  .winner-block {
+    column-gap: 2vw;
+  }
+
+  .winner-block {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 737px) {
+  .game-top {
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .play-zone * {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .play-zone * {
+    font-size: 18px;
   }
 }
