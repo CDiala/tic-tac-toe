@@ -69,10 +69,14 @@ body {
 }
 
 .play-zone {
-  align-items: baseline;
+  /* align-items: baseline; */
   /* background-color: #8862ae; */
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #tiles-container {
@@ -89,7 +93,13 @@ body {
 .player,
 .winner-block__title,
 .winner {
-  font-size: 40px;
+  /* font-size: 40px; */
+  font-size: 26px;
+}
+
+.game-top {
+  display: flex;
+  column-gap: 7rem;
 }
 
 /* ----------------Responsiveness---------------- */
@@ -157,6 +167,19 @@ body {
   .winner-block__title {
     margin: 0;
   }
+}
+
+.player-turn,
+.winner-block {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.players,
+.winner-block__title,
+.error {
+  margin: 10px 0;
 }
 
 @media screen and (max-width: 768px) {
